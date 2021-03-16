@@ -1,0 +1,30 @@
+name: "Sync Git Branch Action"
+description: "Action for synchronizing a git branch to another location (Bitbucket, GitHub, GitLab, etc.) using SSH."
+branding:
+  icon: "copy"
+  color: "#155bd4"
+inputs:
+  source-repo:
+    description: "SSH URL of the source repository. Defaults to the repository this actions runs in."
+    required: false
+    default: 'git@github.com:${{ github.repository }}.git'
+  source-branch:
+    description: "Branch name in source repository."
+    required: true
+    default: ""
+  destination-repo:
+    description: "SSH URL of the destination repository."
+    required: true
+    default: ""
+  destination-branch:
+    description: "Branch name in destination repository. Defaults to source-branch if not present."
+    required: false
+    default: ""
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  args:
+    - ${{ inputs.source-repo }}
+    - ${{ inputs.source-branch }}
+    - ${{ inputs.destination-repo }}
+    - ${{ inputs.destination-branch }}
