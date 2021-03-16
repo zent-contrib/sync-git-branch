@@ -2,7 +2,7 @@ name: "Sync Git Branch Action"
 description: "Action for synchronizing a git branch to another location (Bitbucket, GitHub, GitLab, etc.) using SSH."
 branding:
   icon: "copy"
-  color: "#155bd4"
+  color: "blue"
 inputs:
   source-repo:
     description: "SSH URL of the source repository. Defaults to the repository this actions runs in."
