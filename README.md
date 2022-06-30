@@ -30,7 +30,7 @@ jobs:
   git-mirror:
     runs-on: ubuntu-latest
     steps:
-      - uses: zent-contrib/git-branch-sync-action@v1
+      - uses: zent-contrib/sync-git-branch@v1
         env:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
