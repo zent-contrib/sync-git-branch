@@ -11,6 +11,9 @@ REPO_DIR="repo"
 echo "SOURCE=$SOURCE_REPO:$SOURCE_BRANCH"
 echo "DESTINATION=$DESTINATION_REPO:$DESTINATION_BRANCH"
 
+# dir cleanup
+rm -fr "$REPO_DIR"
+
 # Only clone the branch we want to sync
 git clone --single-branch --branch "$SOURCE_BRANCH" "$SOURCE_REPO" "$REPO_DIR"
 cd "$REPO_DIR"
