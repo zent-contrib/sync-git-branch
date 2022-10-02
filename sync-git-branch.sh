@@ -11,8 +11,10 @@ REPO_DIR="repo"
 echo "SOURCE=$SOURCE_REPO:$SOURCE_BRANCH"
 echo "DESTINATION=$DESTINATION_REPO:$DESTINATION_BRANCH"
 
-# Only clone the branch we want to sync
-git clone --single-branch --branch "$SOURCE_BRANCH" "$SOURCE_REPO" "$REPO_DIR"
-cd "$REPO_DIR"
+rm -fr "$REPO_DIR"
+git clone "$SOURCE_REPO" "$REPO_DIR" --origin source && cd "$REPO_DIR"
+
 git remote add mirror "$DESTINATION_REPO"
-git push mirror "$SOURCE_BRANCH:$DESTINATION_BRANCH"
+git fetch source '+refs/heads/*:refs/heads/*' --update-head-ok
+
+git push -f mirror "$SOURCE_BRANCH:$DESTINATION_BRANCH"
